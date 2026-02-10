@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dinner With Me ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top, #ff758c, #ff7eb3 40%, #2c003e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        p.sub {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            background: #ff6b81;
+            border: none;
+            padding: 14px 26px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .cards {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            perspective: 1000px;
+        }
+
+        /* Increased height for better image visibility */
+        .card-inner {
+            width: 100%;
+            aspect-ratio: 1 / 1.45;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .front {
+            background: rgba(255, 255, 255, 0.1);
+            font-size: 48px;
+            font-weight: 600;
+        }
+
+        /* Text moved to bottom */
+        .back {
+            background-size: cover;
+            background-position: center;
+            transform: rotateY(180deg);
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Bottom gradient text overlay */
+        .overlay {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+            padding: 18px 16px;
+            font-size: 15px;
+            line-height: 1.4;
+            width: 100%;
+            border-radius: 0 0 20px 20px;
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1>Hii Beautiful ❤️</h1>
+        <p class="sub">I was thinking about going on dinner…</p>
+        <p class="sub">Here are some of my favorite Dish that i want to eat...</p>
+
+        <button class="start-btn" onclick="showCards()">Click Here ✨</button>
+
+        <div class="cards" id="cards" style="display:none;">
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">1</div>
+                    <div class="card-face back" style="background-image:url('restaurent.jpg');">
+                        <div class="overlay">Why bother checking? 😏<br />It’s YOU.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">2</div>
+                    <div class="card-face back" style="background-image:url('biryani.jpg');">
+                        <div class="overlay">Biryani cravings 🍗<br />Can’t eat until month end 😅</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">3</div>
+                    <div class="card-face back" style="background-image:url('Chicken dinner.jpg');">
+                        <div class="overlay">I’d choose this chicken leg for dinner… <br />but your legs still steal the
+                            show 😌🍗</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">4</div>
+                    <div class="card-face back" style="background-image:url('pani puri.jpg');">
+                        <div class="overlay">We can eat pani puri… <br />but we’ll never get it as tikhi as you 😏🔥
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">5</div>
+                    <div class="card-face back" style="background-image:url('veg thali.jpg');">
+                        <div class="overlay">Veg Thali 🍽️<br />With dal, roti, and a side of love.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">6</div>
+                    <div class="card-face back" style="background-image:url('pasta\ .jpg');">
+                        <div class="overlay">I’d love to eat pasta… <br />it reminds me of your buttery smooth curves
+                            😌🍝</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">7</div>
+                    <div class="card-face back" style="background-image:url('fish\ or\ prawns.png');">
+                        <div class="overlay">I’ll make sure the fish has no bones,
+                            <br />because that cute tongue of yours deserves only care 😌🐟
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" onclick="flip(this)">
+                <div class="card-inner">
+                    <div class="card-face front">8</div>
+                    <div class="card-face back" style="background-image:url('chinese.jpg');">
+                        <div class="overlay">Chinese comes with spice,
+                            <br /> but you come with fire 😌🥢🔥
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function showCards() {
+            document.getElementById('cards').style.display = 'grid';
+        }
+
+        function flip(card) {
+            card.classList.toggle('flipped');
+        }
+    </script>
+
+    
+
+</body>
+
+</html>
